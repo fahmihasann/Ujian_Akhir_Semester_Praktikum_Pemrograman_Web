@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Semua field wajib diisi dengan benar.";
     } else {
         try {
-            // PERBAIKAN: gunakan tujuan_distribusi sesuai struktur tabel
             $stmt = $conn->prepare("INSERT INTO barang_keluar (tanggal_keluar, jumlah, tujuan_distribusi, id_barang, id_user) VALUES (?, ?, ?, ?, ?)");
             $stmt->bind_param("sisii", $tanggal, $jumlah, $tujuan, $id_barang, $id_user);
             $stmt->execute();
@@ -101,7 +100,7 @@ include_once '../../includes/header.php';
     const inputJumlah      = document.getElementById('jumlah');
     const inputTujuan      = document.getElementById('tujuan');
 
-    // addEventListener: tampilkan stok & batasi max input
+    // Tampilkan stok & batasi max input
     selectBarang.addEventListener('change', function() {
         const selected = this.options[this.selectedIndex];
         const maxStok  = selected.getAttribute('data-stok');
@@ -132,7 +131,7 @@ include_once '../../includes/header.php';
         this.classList.remove('is-invalid');
     });
 
-    // Validasi JS sebelum submit
+    // Validasi sebelum submit
     formBarangKeluar.addEventListener('submit', function(e) {
         let valid = true;
         const jumlah  = parseInt(inputJumlah.value);

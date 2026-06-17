@@ -123,7 +123,7 @@ include_once '../../includes/header.php';
         this.classList.remove('is-invalid');
     });
 
-    // Validasi JavaScript sebelum submit
+    // Validasi sebelum submit
     formBarangMasuk.addEventListener('submit', function(e) {
         let valid = true;
         const jumlah   = parseInt(inputJumlah.value);

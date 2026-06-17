@@ -10,7 +10,7 @@ if ($id === 0) {
     exit;
 }
 
-// Ambil data kategori
+// Ambil data
 $stmt = $conn->prepare("SELECT * FROM kategori WHERE id_kategori = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($nama_kategori)) {
         $error = "Nama kategori wajib diisi.";
     } else {
-        // Cek duplikat (kecuali milik kategori ini)
+        // Cek duplikat
         $cek = $conn->prepare("SELECT id_kategori FROM kategori WHERE nama_kategori = ? AND id_kategori != ?");
         $cek->bind_param("si", $nama_kategori, $id);
         $cek->execute();
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     const charCount = document.getElementById('char-count');
     const errNama   = document.getElementById('err-nama');
 
-    // Inisialisasi counter
+    // Init counter
     charCount.textContent = deskInput.value.length + ' / 100 karakter';
 
     deskInput.addEventListener('input', function () {

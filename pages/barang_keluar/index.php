@@ -4,7 +4,6 @@ require_once '../../includes/auth.php';
 require_once '../../includes/config.php';
 include_once '../../includes/header.php';
 
-// Query langsung ke tabel (hindari view bermasalah)
 $query = "
     SELECT 
         bk.tanggal_keluar AS tanggal, 

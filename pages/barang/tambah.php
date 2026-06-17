@@ -4,13 +4,12 @@ require_once '../../includes/auth.php';
 require_once '../../includes/config.php';
 include_once '../../includes/header.php';
 
-// Ambil daftar kategori untuk dropdown
+// Ambil daftar kategori
 $kategori_list = $conn->query("SELECT id_kategori, nama_kategori FROM kategori ORDER BY nama_kategori ASC");
 
 $error   = '';
 $success = '';
 
-// Proses form tambah barang
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kode_barang  = htmlspecialchars(trim($_POST['kode_barang'] ?? ''));
     $nama_barang  = htmlspecialchars(trim($_POST['nama_barang'] ?? ''));
@@ -18,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $harga_barang = (float)($_POST['harga_barang'] ?? 0);
     $id_kategori  = (int)($_POST['id_kategori'] ?? 0);
 
-    // Validasi field teks
     if (empty($kode_barang) || empty($nama_barang) || $id_kategori === 0) {
         $error = "Semua field wajib diisi.";
     } elseif ($harga_barang <= 0) {
@@ -26,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($stok < 0) {
         $error = "Stok tidak boleh negatif.";
     } else {
-        // Proses upload gambar
+        // Upload gambar
         $nama_file_gambar = null;
 
         if (!empty($_FILES['gambar']['name'])) {
@@ -42,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } elseif ($file['error'] !== UPLOAD_ERR_OK) {
                 $error = "Terjadi kesalahan saat upload gambar.";
             } else {
-                // Buat nama file unik: kode_barang + timestamp
+                // Nama file unik
                 $nama_file_gambar = preg_replace('/[^a-zA-Z0-9]/', '_', $kode_barang)
                                     . '_' . time() . '.' . $ekstensi;
                 $upload_path = '../../assets/img/barang/' . $nama_file_gambar;
@@ -54,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Lanjut simpan ke database kalau tidak ada error upload
         if (empty($error)) {
             // Cek kode duplikat
             $cek = $conn->prepare("SELECT id_barang FROM barang WHERE kode_barang = ?");
@@ -63,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $cek->store_result();
 
             if ($cek->num_rows > 0) {
-                // Hapus gambar yang sudah terlanjur diupload
+                // Hapus gambar yg terlanjur diupload
                 if ($nama_file_gambar) {
                     unlink('../../assets/img/barang/' . $nama_file_gambar);
                 }
@@ -121,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="error-msg text-danger mt-1" id="err-nama" style="display:none; font-size:0.85rem;"></div>
             </div>
 
-            <!-- Stok -->
+
             <div class="mb-3">
                 <label for="stok" class="form-label fw-semibold">Stok Awal <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" id="stok" name="stok"
@@ -130,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="error-msg text-danger mt-1" id="err-stok" style="display:none; font-size:0.85rem;"></div>
             </div>
 
-            <!-- Harga -->
+
             <div class="mb-3">
                 <label for="harga_barang" class="form-label fw-semibold">Harga Barang (Rp) <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" id="harga_barang" name="harga_barang"
@@ -139,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="error-msg text-danger mt-1" id="err-harga" style="display:none; font-size:0.85rem;"></div>
             </div>
 
-            <!-- Kategori -->
+
             <div class="mb-3">
                 <label for="id_kategori" class="form-label fw-semibold">Kategori <span class="text-danger">*</span></label>
                 <select class="form-select" id="id_kategori" name="id_kategori">
@@ -154,14 +151,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="error-msg text-danger mt-1" id="err-kategori" style="display:none; font-size:0.85rem;"></div>
             </div>
 
-            <!-- Upload Gambar -->
+
             <div class="mb-4">
                 <label for="gambar" class="form-label fw-semibold">Gambar Barang <span class="text-muted fw-normal">(opsional)</span></label>
                 <input type="file" class="form-control" id="gambar" name="gambar"
                        accept=".jpg,.jpeg,.png,.webp">
                 <div class="form-text">Format: JPG, PNG, WEBP. Maksimal 2MB.</div>
                 <div id="err-gambar" class="text-danger mt-1" style="display:none; font-size:0.85rem;"></div>
-                <!-- Preview gambar sebelum upload -->
+                <!-- Preview -->
                 <div id="preview-container" class="mt-2" style="display:none;">
                     <img id="preview-img" src="#" alt="Preview"
                          style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 1px solid #dee2e6; object-fit: cover;">
@@ -200,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         document.getElementById(elId).style.display = 'none';
     }
 
-    // Preview gambar saat dipilih (addEventListener - syarat JS #4)
+    // Preview gambar
     inputGambar.addEventListener('change', function () {
         const file = this.files[0];
         errGambar.style.display = 'none';
@@ -210,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             return;
         }
 
-        // Validasi tipe file di sisi client
+        // Cek tipe file
         const allowed = ['image/jpeg', 'image/png', 'image/webp'];
         if (!allowed.includes(file.type)) {
             errGambar.textContent = 'Format tidak didukung. Gunakan JPG, PNG, atau WEBP.';
@@ -220,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             return;
         }
 
-        // Validasi ukuran file (2MB)
+        // Cek ukuran (max 2MB)
         if (file.size > 2 * 1024 * 1024) {
             errGambar.textContent = 'Ukuran gambar maksimal 2MB.';
             errGambar.style.display = 'block';
@@ -239,14 +236,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         reader.readAsDataURL(file);
     });
 
-    // Tombol hapus preview
     btnHapus.addEventListener('click', function () {
         inputGambar.value = '';
         previewCont.style.display = 'none';
         previewImg.src = '#';
     });
 
-    // Hapus error saat user input
+    // Reset error saat input
     document.getElementById('kode_barang').addEventListener('input', () => hideError('err-kode'));
     document.getElementById('nama_barang').addEventListener('input', () => hideError('err-nama'));
     document.getElementById('stok').addEventListener('input', () => hideError('err-stok'));

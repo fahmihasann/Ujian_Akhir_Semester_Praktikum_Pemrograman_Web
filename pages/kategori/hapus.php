@@ -10,7 +10,6 @@ if ($id === 0) {
     exit;
 }
 
-// Cek kategori ada
 $cek = $conn->prepare("SELECT nama_kategori FROM kategori WHERE id_kategori = ?");
 $cek->bind_param("i", $id);
 $cek->execute();
@@ -31,7 +30,6 @@ try {
     header("Location: " . $base_url . "/pages/kategori/index.php?success=" . urlencode("Kategori \"" . $kategori['nama_kategori'] . "\" berhasil dihapus."));
     exit;
 } catch (mysqli_sql_exception $e) {
-    // FK constraint: masih ada barang di kategori ini
     header("Location: " . $base_url . "/pages/kategori/index.php?error=" . urlencode("Kategori tidak bisa dihapus karena masih memiliki barang. Hapus atau pindahkan barang terlebih dahulu."));
     exit;
 }

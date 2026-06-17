@@ -1,4 +1,4 @@
-/* assets/css/style.css */
+/* style.css */
 
 :root {
     --bg-main: #F5F5F5;
@@ -156,11 +156,11 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     opacity: 0.65;
 }
 
-/* Typography refinements */
+/* Typography */
 .fw-bold { font-weight: 600 !important; }
 .fw-bolder { font-weight: 700 !important; }
 
-/* Pagination Overrides */
+/* Pagination */
 .pagination .page-link {
     color: var(--text-primary) !important;
     border-color: var(--border-color) !important;
@@ -181,7 +181,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     border-color: var(--border-color) !important;
 }
 
-/* Custom thick borders */
+/* Thick borders */
 .border-thick-dark {
     border: 3px solid #111111 !important;
 }

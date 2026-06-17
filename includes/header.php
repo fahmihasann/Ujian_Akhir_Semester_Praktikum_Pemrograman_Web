@@ -1,5 +1,4 @@
 <?php
-// Pastikan session sudah berjalan untuk mengecek status login
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

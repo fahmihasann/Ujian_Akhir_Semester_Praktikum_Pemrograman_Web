@@ -1,9 +1,8 @@
 /**
- * assets/js/validation.js
- * Helper validasi & interaktivitas untuk Inventaris Barang
+ * validation.js
  */
 
-// Toggle password visibility (Manipulasi DOM - syarat JS #3)
+// Toggle password visibility
 function togglePassword(inputId, toggleBtnId) {
     const input = document.getElementById(inputId);
     const btn   = document.getElementById(toggleBtnId);
@@ -25,7 +24,7 @@ function togglePassword(inputId, toggleBtnId) {
     });
 }
 
-// Helper: tampilkan error inline
+// Tampilkan error inline
 function showError(elementId, message) {
     const el = document.getElementById(elementId);
     if (el) {
@@ -34,13 +33,13 @@ function showError(elementId, message) {
     }
 }
 
-// Helper: sembunyikan error inline
+// Sembunyikan error
 function hideError(elementId) {
     const el = document.getElementById(elementId);
     if (el) el.style.display = 'none';
 }
 
-// Helper: reset semua error dalam form
+// Reset semua error dalam form
 function clearFormErrors(form) {
     form.querySelectorAll('.error-msg, .invalid-feedback').forEach(el => {
         el.style.display = 'none';
@@ -51,18 +50,16 @@ function clearFormErrors(form) {
     });
 }
 
-// Helper: validasi field wajib
 function validateRequired(value) {
     return value.trim() !== '';
 }
 
-// Helper: validasi minimal nilai numerik
 function validateMin(value, min) {
     const num = parseFloat(value);
     return !isNaN(num) && num >= min;
 }
 
-// Auto-attach confirm() ke semua .btn-hapus (syarat JS #2)
+// Auto-attach confirm() ke tombol hapus
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.btn-hapus').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
@@ -77,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Auto-dismiss alert setelah 5 detik (Manipulasi DOM - syarat JS #3)
+    // Auto-dismiss alert setelah 5 detik
     const alerts = document.querySelectorAll('.alert-dismissible');
     if (alerts.length > 0) {
         setTimeout(function () {

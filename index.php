@@ -1,25 +1,19 @@
 <?php
-// Memuat konfigurasi database
 require_once 'includes/config.php';
 
-// Mengambil total data dari masing-masing tabel menggunakan COUNT(*)
-// 1. Total Barang
+// Hitung ringkasan dashboard
 $query_barang = $conn->query("SELECT COUNT(*) as total FROM barang");
 $total_barang = $query_barang ? $query_barang->fetch_assoc()['total'] : 0;
 
-// 2. Total Kategori
 $query_kategori = $conn->query("SELECT COUNT(*) as total FROM kategori");
 $total_kategori = $query_kategori ? $query_kategori->fetch_assoc()['total'] : 0;
 
-// 3. Total Transaksi Masuk
 $query_masuk = $conn->query("SELECT COUNT(*) as total FROM barang_masuk");
 $total_masuk = $query_masuk ? $query_masuk->fetch_assoc()['total'] : 0;
 
-// 4. Total Transaksi Keluar
 $query_keluar = $conn->query("SELECT COUNT(*) as total FROM barang_keluar");
 $total_keluar = $query_keluar ? $query_keluar->fetch_assoc()['total'] : 0;
 
-// Memuat header halaman
 include_once 'includes/header.php';
 ?>
 
@@ -81,7 +75,4 @@ include_once 'includes/header.php';
     </div>
 </div>
 
-<?php
-// Memuat footer halaman
-include_once 'includes/footer.php';
-?>
+<?php include_once 'includes/footer.php'; ?>

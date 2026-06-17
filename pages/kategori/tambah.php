@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($nama_kategori)) {
         $error = "Nama kategori wajib diisi.";
     } else {
-        // Cek duplikat nama kategori
+        // Cek duplikat
         $cek = $conn->prepare("SELECT id_kategori FROM kategori WHERE nama_kategori = ?");
         $cek->bind_param("s", $nama_kategori);
         $cek->execute();
@@ -87,14 +87,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     const charCount  = document.getElementById('char-count');
     const errNama    = document.getElementById('err-nama');
 
-    // Counter karakter deskripsi (addEventListener - syarat JS #4)
+    // Counter karakter
     deskInput.addEventListener('input', function () {
         const len = this.value.length;
         charCount.textContent = len + ' / 100 karakter';
         charCount.style.color = len > 100 ? '#dc3545' : '#6c757d';
     });
 
-    // Hapus error saat user mengetik
     namaInput.addEventListener('input', function () {
         if (this.value.trim() !== '') {
             errNama.style.display = 'none';
@@ -102,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     });
 
-    // Validasi sebelum submit
+    // Validasi
     form.addEventListener('submit', function (e) {
         const nama = namaInput.value.trim();
         const desk = deskInput.value.trim();

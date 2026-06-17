@@ -22,7 +22,6 @@ if (!$barang) {
     exit;
 }
 
-// Ambil kategori
 $kategori_list = $conn->query("SELECT id_kategori, nama_kategori FROM kategori ORDER BY nama_kategori ASC");
 
 $error = '';
@@ -44,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $gambar_baru = $barang['gambar']; // default: pakai gambar lama
 
-        // Jika user centang "hapus gambar"
+        // Hapus gambar lama kalau dicentang
         if ($hapus_gambar && $barang['gambar']) {
             $path_lama = '../../assets/img/barang/' . $barang['gambar'];
             if (file_exists($path_lama)) unlink($path_lama);
             $gambar_baru = null;
         }
 
-        // Jika ada file gambar baru diupload
+        // Upload gambar baru
         if (!empty($_FILES['gambar']['name']) && $_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
             $file     = $_FILES['gambar'];
             $ekstensi = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -63,12 +62,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } elseif ($file['size'] > $max_size) {
                 $error = "Ukuran gambar maksimal 2MB.";
             } else {
-                // Hapus gambar lama dulu
+                // Hapus gambar lama
                 if ($barang['gambar']) {
                     $path_lama = '../../assets/img/barang/' . $barang['gambar'];
                     if (file_exists($path_lama)) unlink($path_lama);
                 }
-                // Simpan gambar baru
+                // Simpan baru
                 $gambar_baru = preg_replace('/[^a-zA-Z0-9]/', '_', $kode_barang)
                                . '_' . time() . '.' . $ekstensi;
                 if (!move_uploaded_file($file['tmp_name'], '../../assets/img/barang/' . $gambar_baru)) {
@@ -79,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (empty($error)) {
-            // Cek duplikat kode (kecuali milik barang ini)
+            // Cek duplikat kode
             $cek = $conn->prepare("SELECT id_barang FROM barang WHERE kode_barang = ? AND id_barang != ?");
             $cek->bind_param("si", $kode_barang, $id);
             $cek->execute();
@@ -100,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             $cek->close();
 
-            // Update tampilan form dengan data terbaru
+            // Update form dgn data terbaru
             $barang['gambar'] = $gambar_baru;
         }
     }
@@ -172,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div id="err-kategori" class="text-danger mt-1" style="display:none; font-size:0.85rem;"></div>
             </div>
 
-            <!-- Gambar saat ini -->
+            <!-- Gambar sekarang -->
             <div class="mb-3">
                 <label class="form-label fw-semibold">Gambar Saat Ini</label>
                 <?php if ($barang['gambar']): ?>
@@ -192,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
             </div>
 
-            <!-- Upload Gambar Baru -->
+            <!-- Upload baru -->
             <div class="mb-4">
                 <label for="gambar" class="form-label fw-semibold">
                     <?= $barang['gambar'] ? 'Ganti Gambar' : 'Upload Gambar' ?>
@@ -276,14 +275,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         previewCont.style.display = 'none';
     });
 
-    // Hapus error saat input
+    // Reset error saat input
     document.getElementById('kode_barang').addEventListener('input',   () => hideError('err-kode'));
     document.getElementById('nama_barang').addEventListener('input',   () => hideError('err-nama'));
     document.getElementById('stok').addEventListener('input',          () => hideError('err-stok'));
     document.getElementById('harga_barang').addEventListener('input',  () => hideError('err-harga'));
     document.getElementById('id_kategori').addEventListener('change',  () => hideError('err-kategori'));
 
-    // Validasi + konfirmasi sebelum submit
+    // Validasi + konfirmasi
     form.addEventListener('submit', function (e) {
         let valid = true;
 

@@ -93,10 +93,11 @@ include_once '../../includes/header.php';
 </div>
 
 <script>
-    const form          = document.getElementById('formBarangMasuk');
-    const selectBarang  = document.getElementById('id_barang');
-    const jumlahInput   = document.getElementById('jumlah');
-    const infoStok      = document.getElementById('infoStok');
+    const formBarangMasuk = document.getElementById('formBarangMasuk');
+    const selectBarang    = document.getElementById('id_barang');
+    const inputJumlah     = document.getElementById('jumlah');
+    const inputSupplier   = document.getElementById('supplier');
+    const infoStok        = document.getElementById('infoStok');
 
     selectBarang.addEventListener('change', function () {
         const option = this.options[this.selectedIndex];
@@ -125,7 +126,7 @@ include_once '../../includes/header.php';
     // Validasi JavaScript sebelum submit
     formBarangMasuk.addEventListener('submit', function(e) {
         let valid = true;
-        const jumlah  = parseInt(inputJumlah.value);
+        const jumlah   = parseInt(inputJumlah.value);
         const supplier = inputSupplier.value.trim();
 
         if (isNaN(jumlah) || jumlah < 1) {

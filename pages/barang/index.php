@@ -103,26 +103,29 @@ $error   = htmlspecialchars($_GET['error'] ?? '');
                         </div>
                         <p class="card-text text-muted small mb-3">Kode: <code><?= htmlspecialchars($row['kode_barang']) ?></code></p>
                         
-                        <div class="mt-auto">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="fw-semibold">Stok:</span>
-                                <span><?= htmlspecialchars($row['stok']) ?>
-                                    <?php
-                                        $status_color = 'bg-success';
-                                        if ($row['status_stok'] == 'Kritis') $status_color = 'bg-danger';
-                                        elseif ($row['status_stok'] == 'Normal') $status_color = 'bg-warning text-dark';
-                                    ?>
-                                    <span class="badge <?= $status_color ?> ms-1"><?= htmlspecialchars($row['status_stok']) ?></span>
-                                </span>
+                        <div class="mt-auto" style="display: grid; grid-template-columns: auto auto 1fr; row-gap: 0.5rem; column-gap: 0.5rem; font-size: 0.9rem;">
+                            <!-- Stok -->
+                            <div class="fw-semibold text-nowrap d-flex align-items-center">Stok</div>
+                            <div></div>
+                            <div class="text-end d-flex justify-content-end align-items-center">
+                                <?= htmlspecialchars($row['stok']) ?>
+                                <?php
+                                    $status_color = 'bg-success';
+                                    if ($row['status_stok'] == 'Kritis') $status_color = 'bg-danger';
+                                    elseif ($row['status_stok'] == 'Normal') $status_color = 'bg-warning text-dark';
+                                ?>
+                                <span class="badge <?= $status_color ?> ms-1"><?= htmlspecialchars($row['status_stok']) ?></span>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="fw-semibold">Harga:</span>
-                                <span>Rp <?= number_format($row['harga_barang'], 0, ',', '.') ?></span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-semibold">Total Nilai:</span>
-                                <span class="text-dark fw-bold">Rp <?= number_format($row['nilai_inventaris'], 0, ',', '.') ?></span>
-                            </div>
+
+                            <!-- Harga -->
+                            <div class="fw-semibold text-nowrap d-flex align-items-center">Harga</div>
+                            <div class="d-flex align-items-center">Rp</div>
+                            <div class="text-end"><?= number_format($row['harga_barang'], 0, ',', '.') ?></div>
+
+                            <!-- Total Nilai -->
+                            <div class="fw-semibold text-nowrap d-flex align-items-center">Total Nilai</div>
+                            <div class="d-flex align-items-center fw-bold text-dark">Rp</div>
+                            <div class="text-dark fw-bold text-end"><?= number_format($row['nilai_inventaris'], 0, ',', '.') ?></div>
                         </div>
                     </div>
                     <div class="card-footer bg-white border-top-0 d-flex gap-2 p-3 pt-0">

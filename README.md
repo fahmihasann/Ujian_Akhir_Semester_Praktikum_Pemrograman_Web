@@ -32,7 +32,7 @@ PHP, MySQL, Bootstrap 5, JavaScript, Laragon
 ![Daftar Barang](screenshot/tambah_barang.png)
 
 ### 3. Form Tambah Barang
-![Form Tambah Barang](screenshot/form_tambah_barang.png)
+![Form Tambah Barang](screenshot/tambah_barang.png)
 
 ### 4. Form Edit Barang
 ![Form Edit Barang](screenshot/form_edit_barang.png)

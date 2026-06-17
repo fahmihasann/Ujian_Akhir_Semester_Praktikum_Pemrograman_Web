@@ -1,0 +1,66 @@
+/* assets/css/style.css */
+
+/* Smooth transition untuk card hover */
+.card {
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Breadcrumb custom jika digunakan */
+.breadcrumb {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Pastikan table tidak overflow di mobile */
+.table-responsive {
+    min-height: 200px;
+}
+
+/* Custom scrollbar untuk tabel panjang */
+.table-responsive::-webkit-scrollbar {
+    height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #adb5bd;
+    border-radius: 3px;
+}
+
+/* Navbar brand lebih tegas */
+.navbar-brand {
+    letter-spacing: 0.5px;
+}
+
+/* Form focus state lebih jelas */
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    border-color: #86b7fe;
+}
+
+/* Tombol disabled lebih jelas */
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+/* Mobile optimization: kurangi padding hero di layar kecil */
+@media (max-width: 576px) {
+    .display-5 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-section {
+        padding: 2rem 1rem !important;
+    }
+    
+    .card-body {
+        padding: 1.25rem !important;
+    }
+}
+
+/* Tablet optimization */
+@media (min-width: 577px) and (max-width: 991px) {
+    .display-5 {
+        font-size: 2.2rem;
+    }
+}

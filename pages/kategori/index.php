@@ -20,7 +20,7 @@ $kategori_list = $conn->query($query);
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="fw-bold mb-0">Data Kategori</h4>
-    <a href="<?= $base_url ?>/pages/kategori/tambah.php" class="btn btn-primary">+ Tambah Kategori</a>
+    <a href="<?= $base_url ?>/pages/kategori/tambah.php" class="btn btn-dark">+ Tambah Kategori</a>
 </div>
 
 <?php if ($success): ?>
@@ -37,11 +37,11 @@ $kategori_list = $conn->query($query);
     </div>
 <?php endif; ?>
 
-<div class="card border-0 shadow-sm">
+<div class="card">
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
-                <thead class="table-primary">
+                <thead class="table-dark">
                     <tr>
                         <th class="ps-3">No</th>
                         <th>Nama Kategori</th>
@@ -69,9 +69,9 @@ $kategori_list = $conn->query($query);
                                 </td>
                                 <td class="text-center">
                                     <a href="<?= $base_url ?>/pages/kategori/edit.php?id=<?= $row['id_kategori'] ?>"
-                                        class="btn btn-sm btn-warning me-1">Edit</a>
+                                        class="btn btn-sm btn-outline-dark me-1">Edit</a>
                                     <a href="<?= $base_url ?>/pages/kategori/hapus.php?id=<?= $row['id_kategori'] ?>"
-                                        class="btn btn-sm btn-danger btn-hapus"
+                                        class="btn btn-sm btn-secondary btn-hapus"
                                         data-nama="<?= htmlspecialchars($row['nama_kategori']) ?>"
                                         data-extra="<?= htmlspecialchars($extra) ?>">Hapus</a>
                                 </td>

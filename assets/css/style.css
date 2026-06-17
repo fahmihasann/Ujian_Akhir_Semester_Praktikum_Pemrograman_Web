@@ -1,22 +1,147 @@
 /* assets/css/style.css */
 
-/* Smooth transition untuk card hover */
+:root {
+    --bg-main: #F5F5F5;
+    --bg-surface: #FFFFFF;
+    --text-primary: #111111;
+    --text-secondary: #6B6B6B;
+    --border-color: #E0E0E0;
+    --cta-main: #000000;
+    --cta-hover: #333333;
+    --font-primary: 'JetBrains Mono', monospace;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+.text-muted, .text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+/* Card Overrides */
 .card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
     transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-/* Breadcrumb custom jika digunakan */
-.breadcrumb {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* Pastikan table tidak overflow di mobile */
+/* Button Overrides */
+.btn {
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    box-shadow: none !important;
+}
+
+.btn-dark {
+    background-color: var(--cta-main) !important;
+    border-color: var(--cta-main) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-dark:hover, .btn-dark:focus {
+    background-color: var(--cta-hover) !important;
+    border-color: var(--cta-hover) !important;
+}
+
+.btn-outline-dark {
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.btn-outline-dark:hover, .btn-outline-dark:focus {
+    background-color: #F8F9FA !important;
+    color: var(--cta-main) !important;
+    border-color: var(--text-secondary) !important;
+}
+
+.btn-secondary {
+    background-color: #E0E0E0 !important;
+    border-color: #E0E0E0 !important;
+    color: var(--text-primary) !important;
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: #D6D6D6 !important;
+    border-color: #D6D6D6 !important;
+}
+
+/* Table Overrides */
+.table {
+    color: var(--text-primary);
+    margin-bottom: 0;
+}
+
+.table > :not(caption) > * > * {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: transparent;
+}
+
+.table-dark th {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-secondary) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--border-color) !important;
+    border-top: none;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #FAFAFA !important;
+}
+
+/* Badge Overrides */
+.badge {
+    font-weight: 500;
+    padding: 0.4em 0.8em;
+    border-radius: 4px;
+}
+
+.badge.bg-dark {
+    background-color: var(--text-primary) !important;
+    color: #FFFFFF;
+}
+
+.badge.bg-secondary {
+    background-color: #EEEEEE !important;
+    color: var(--text-secondary) !important;
+    border: 1px solid var(--border-color);
+}
+
+/* Form Overrides */
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.15rem rgba(17, 17, 17, 0.1);
+    border-color: var(--text-secondary);
+}
+
+/* Navbar Overrides */
+.navbar {
+    border-bottom: 1px solid var(--border-color) !important;
+    box-shadow: none !important;
+}
+
+/* Utilities */
 .table-responsive {
     min-height: 200px;
 }
 
-/* Custom scrollbar untuk tabel panjang */
 .table-responsive::-webkit-scrollbar {
     height: 6px;
 }
@@ -26,41 +151,37 @@
     border-radius: 3px;
 }
 
-/* Navbar brand lebih tegas */
-.navbar-brand {
-    letter-spacing: 0.5px;
-}
-
-/* Form focus state lebih jelas */
-.form-control:focus, .form-select:focus {
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-    border-color: #86b7fe;
-}
-
-/* Tombol disabled lebih jelas */
 .btn:disabled {
     cursor: not-allowed;
     opacity: 0.65;
 }
 
-/* Mobile optimization: kurangi padding hero di layar kecil */
-@media (max-width: 576px) {
-    .display-5 {
-        font-size: 1.8rem;
-    }
-    
-    .hero-section {
-        padding: 2rem 1rem !important;
-    }
-    
-    .card-body {
-        padding: 1.25rem !important;
-    }
+/* Typography refinements */
+.fw-bold { font-weight: 600 !important; }
+.fw-bolder { font-weight: 700 !important; }
+
+/* Pagination Overrides */
+.pagination .page-link {
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+.pagination .page-link:hover, .pagination .page-link:focus {
+    background-color: var(--bg-main) !important;
+    color: var(--cta-main) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: none !important;
+}
+.pagination .page-item.active .page-link {
+    background-color: var(--cta-main) !important;
+    border-color: var(--cta-main) !important;
+    color: #FFFFFF !important;
+}
+.pagination .page-item.disabled .page-link {
+    color: var(--text-secondary) !important;
+    border-color: var(--border-color) !important;
 }
 
-/* Tablet optimization */
-@media (min-width: 577px) and (max-width: 991px) {
-    .display-5 {
-        font-size: 2.2rem;
-    }
+/* Custom thick borders */
+.border-thick-dark {
+    border: 3px solid #111111 !important;
 }

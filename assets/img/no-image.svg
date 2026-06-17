@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+    <!-- Background -->
+    <rect width="400" height="400" fill="#f4f4f4"/>
+    
+    <!-- Sun -->
+    <circle cx="170" cy="160" r="28" fill="#dcdcdc"/>
+    
+    <!-- Left Mountain -->
+    <polygon points="80,280 200,180 320,280" fill="#dcdcdc"/>
+    
+    <!-- Right Mountain (Foreground) -->
+    <polygon points="170,280 260,210 350,280" fill="#e5e5e5"/>
+</svg>

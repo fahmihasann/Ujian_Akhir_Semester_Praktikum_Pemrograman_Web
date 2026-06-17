@@ -42,7 +42,7 @@ include_once '../../includes/header.php';
     </a>
 </div>
 
-<div class="card border-0 shadow-sm" style="max-width: 640px;">
+<div class="card" style="max-width: 640px;">
     <div class="card-body p-4">
 
         <?php if ($error): ?>
@@ -86,7 +86,7 @@ include_once '../../includes/header.php';
             </div>
 
             <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-danger px-4">Simpan Transaksi</button>
+                <button type="submit" class="btn btn-dark px-4">Simpan Transaksi</button>
                 <a href="<?= $base_url ?>/pages/barang_keluar/index.php" class="btn btn-outline-secondary px-4">Batal</a>
             </div>
 
@@ -108,7 +108,7 @@ include_once '../../includes/header.php';
 
         if (this.value !== "") {
             infoStok.innerHTML = `Stok tersedia saat ini: <strong>${maxStok}</strong>`;
-            infoStok.className = "text-primary mt-1";
+            infoStok.className = "text-dark mt-1";
             infoStok.style.fontSize = "0.85rem";
             inputJumlah.max = maxStok;
 

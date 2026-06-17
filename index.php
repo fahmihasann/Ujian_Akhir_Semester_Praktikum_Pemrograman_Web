@@ -23,53 +23,58 @@ $total_keluar = $query_keluar ? $query_keluar->fetch_assoc()['total'] : 0;
 include_once 'includes/header.php';
 ?>
 
-<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border">
+<div class="p-5 mb-4 bg-white rounded-3 border">
     <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold text-primary">Sistem Pendataan Inventaris Barang</h1>
-        <p class="col-md-8 fs-5 text-muted">Selamat datang di aplikasi manajemen inventaris barang kantor. Kelola data master barang, kategori, serta pantau pencatatan log barang masuk dan keluar secara terintegrasi.</p>
+        <h1 class="display-5 fw-bold text-dark">Sistem Pendataan Inventaris Barang</h1>
+        <p class="col-md-8 fs-5 text-muted">Selamat datang di aplikasi manajemen inventaris barang kantor. Kelola data
+            master barang, kategori, serta pantau pencatatan log barang masuk dan keluar secara terintegrasi.</p>
     </div>
 </div>
 
 <div class="row g-4">
     <div class="col-md-3">
-        <div class="card h-100 border-0 shadow-sm bg-primary text-white">
+        <div class="card h-100 bg-transparent border-thick-dark rounded-0">
             <div class="card-body d-flex flex-column justify-content-between p-4">
                 <div>
-                    <h6 class="card-title text-uppercase text-white-50 mb-1 fw-semibold" style="font-size: 0.85rem;">Total Barang</h6>
-                    <h2 class="display-5 fw-bold mb-0"><?= $total_barang; ?></h2>
+                    <h6 class="card-title text-uppercase text-dark mb-1 fw-semibold"
+                        style="font-size: 0.85rem; opacity: 0.8;">Total Barang</h6>
+                    <h2 class="display-5 fw-bold text-dark mb-0"><?= $total_barang; ?></h2>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="col-md-3">
-        <div class="card h-100 border-0 shadow-sm bg-success text-white">
+        <div class="card h-100 bg-transparent border-thick-dark rounded-0">
             <div class="card-body d-flex flex-column justify-content-between p-4">
                 <div>
-                    <h6 class="card-title text-uppercase text-white-50 mb-1 fw-semibold" style="font-size: 0.85rem;">Total Kategori</h6>
-                    <h2 class="display-5 fw-bold mb-0"><?= $total_kategori; ?></h2>
+                    <h6 class="card-title text-uppercase text-dark mb-1 fw-semibold"
+                        style="font-size: 0.85rem; opacity: 0.8;">Total Kategori</h6>
+                    <h2 class="display-5 fw-bold text-dark mb-0"><?= $total_kategori; ?></h2>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="col-md-3">
-        <div class="card h-100 border-0 shadow-sm bg-info text-white">
+        <div class="card h-100 bg-transparent border-thick-dark rounded-0">
             <div class="card-body d-flex flex-column justify-content-between p-4">
                 <div>
-                    <h6 class="card-title text-uppercase text-white-50 mb-1 fw-semibold" style="font-size: 0.85rem;">Barang Masuk</h6>
-                    <h2 class="display-5 fw-bold mb-0"><?= $total_masuk; ?></h2>
+                    <h6 class="card-title text-uppercase text-dark mb-1 fw-semibold"
+                        style="font-size: 0.85rem; opacity: 0.8;">Barang Masuk</h6>
+                    <h2 class="display-5 fw-bold text-dark mb-0"><?= $total_masuk; ?></h2>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="col-md-3">
-        <div class="card h-100 border-0 shadow-sm bg-warning text-white">
+        <div class="card h-100 bg-transparent border-thick-dark rounded-0">
             <div class="card-body d-flex flex-column justify-content-between p-4">
                 <div>
-                    <h6 class="card-title text-uppercase text-white-50 mb-1 fw-semibold" style="font-size: 0.85rem;">Barang Keluar</h6>
-                    <h2 class="display-5 fw-bold mb-0"><?= $total_keluar; ?></h2>
+                    <h6 class="card-title text-uppercase text-dark mb-1 fw-semibold"
+                        style="font-size: 0.85rem; opacity: 0.8;">Barang Keluar</h6>
+                    <h2 class="display-5 fw-bold text-dark mb-0"><?= $total_keluar; ?></h2>
                 </div>
             </div>
         </div>

@@ -41,7 +41,7 @@ include_once '../../includes/header.php';
     </a>
 </div>
 
-<div class="card border-0 shadow-sm" style="max-width: 640px;">
+<div class="card" style="max-width: 640px;">
     <div class="card-body p-4">
 
         <?php if ($error): ?>
@@ -85,8 +85,7 @@ include_once '../../includes/header.php';
             </div>
 
             <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-primary px-4">Simpan Transaksi</button>
-                <a href="<?= $base_url ?>/pages/barang_masuk/index.php" class="btn btn-outline-secondary px-4">Batal</a>
+                <button type="submit" class="btn btn-dark px-4">Simpan Transaksi</button>
             </div>
 
         </form>
@@ -94,19 +93,18 @@ include_once '../../includes/header.php';
 </div>
 
 <script>
-    const formBarangMasuk = document.getElementById('formBarangMasuk');
-    const selectBarang    = document.getElementById('id_barang');
-    const infoStok        = document.getElementById('infoStok');
-    const inputJumlah     = document.getElementById('jumlah');
-    const inputSupplier   = document.getElementById('supplier');
+    const form          = document.getElementById('formBarangMasuk');
+    const selectBarang  = document.getElementById('id_barang');
+    const jumlahInput   = document.getElementById('jumlah');
+    const infoStok      = document.getElementById('infoStok');
 
-    // addEventListener selain onclick: tampilkan stok saat barang dipilih
-    selectBarang.addEventListener('change', function() {
-        const selected = this.options[this.selectedIndex];
-        const stok = selected.getAttribute('data-stok');
+    selectBarang.addEventListener('change', function () {
+        const option = this.options[this.selectedIndex];
+        const stok = option.getAttribute('data-stok');
+        
         if (this.value !== "") {
-            infoStok.innerHTML = `Stok saat ini: <strong>${stok}</strong>`;
-            infoStok.className = "text-primary mt-1";
+            infoStok.textContent = 'Stok saat ini: ' + stok;
+            infoStok.className = "text-dark mt-1";
             infoStok.style.fontSize = "0.85rem";
         } else {
             infoStok.innerHTML = "Pilih barang untuk melihat stok saat ini.";

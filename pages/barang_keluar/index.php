@@ -22,7 +22,7 @@ $result = $conn->query($query);
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="fw-bold mb-0">Riwayat Barang Keluar</h4>
-    <a href="<?= $base_url ?>/pages/barang_keluar/tambah.php" class="btn btn-danger">
+    <a href="<?= $base_url ?>/pages/barang_keluar/tambah.php" class="btn btn-dark">
         + Catat Barang Keluar
     </a>
 </div>
@@ -34,16 +34,16 @@ $result = $conn->query($query);
     </div>
 <?php endif; ?>
 
-<div class="card border-0 shadow-sm">
+<div class="card">
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
-                <thead class="table-primary">
+                <thead class="table-dark">
                     <tr>
                         <th class="ps-3">No</th>
                         <th>Tanggal</th>
                         <th>Nama Barang</th>
-                        <th>Jumlah</th>
+                        <th class="text-center">Jumlah</th>
                         <th>Tujuan / Keterangan</th>
                         <th>Petugas</th>
                     </tr>
@@ -55,8 +55,8 @@ $result = $conn->query($query);
                                 <td class="ps-3"><?= $no++ ?></td>
                                 <td><?= htmlspecialchars($row['tanggal']) ?></td>
                                 <td class="fw-semibold"><?= htmlspecialchars($row['nama_barang']) ?></td>
-                                <td>
-                                    <span class="text-danger fw-bold">-<?= htmlspecialchars($row['jumlah']) ?></span>
+                                <td class="text-center">
+                                    <span class="text-dark fw-bold"><?= htmlspecialchars($row['jumlah']) ?></span>
                                 </td>
                                 <td><?= htmlspecialchars($row['keterangan'] ?? '-') ?></td>
                                 <td><?= htmlspecialchars($row['nama_lengkap']) ?></td>

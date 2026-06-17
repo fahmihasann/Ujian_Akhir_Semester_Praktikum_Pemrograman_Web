@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <a href="<?= $base_url ?>/pages/kategori/index.php" class="btn btn-outline-secondary btn-sm">&larr; Kembali</a>
 </div>
 
-<div class="card border-0 shadow-sm" style="max-width: 560px;">
+<div class="card" style="max-width: 560px;">
     <div class="card-body p-4">
 
         <?php if ($error): ?>
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-warning px-4 fw-semibold">Perbarui</button>
+                <button type="submit" class="btn btn-dark px-4 fw-semibold">Perbarui</button>
                 <a href="<?= $base_url ?>/pages/kategori/index.php" class="btn btn-outline-secondary px-4">Batal</a>
             </div>
 

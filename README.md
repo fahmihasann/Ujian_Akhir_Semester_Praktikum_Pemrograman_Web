@@ -39,3 +39,6 @@ PHP, MySQL, Bootstrap 5, JavaScript, Laragon
 
 ### 5. Tampilan Mobile
 ![Tampilan Mobile](screenshot/tampilan_mobile.png)
+
+## Link Video Google Drive
+https://drive.google.com/drive/folders/1oY3-75x3T_ExxGLNhwWZ_gQdNbykC8T3?usp=drive_link
